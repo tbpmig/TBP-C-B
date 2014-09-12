@@ -6,6 +6,8 @@
 *.fls
 *.out
 *.toc
+*.cb
+*.cb2
 
 ## Intermediate documents:
 *.dvi
@@ -107,3 +109,6 @@ sympy-plots-for-*.tex/
 
 # xindy
 *.xdy
+
+# the bylaws class (separate repo)
+bylaws.cls
