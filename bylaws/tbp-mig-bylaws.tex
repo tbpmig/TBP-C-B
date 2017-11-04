@@ -1,13 +1,24 @@
 \documentclass[bylaws,final,10pt,withoutoptional,withoutpreface]{../bylaws}
 \usepackage[color]{changebar}
 \usepackage{mathpazo}
+\usepackage{xspace}
+\usepackage{xcolor}
 \organization{Tau Beta Pi -- Michigan Gamma Chapter}
 \orglogo{../RotatedBentwWords}
 \adoptiondate{12 November 2013}
-\chapteramendmentdate{31 March 2015}
-\appendixamendmentdate{30 November 2015}
+\chapteramendmentdate{24 October 2017}
+\appendixamendmentdate{31 August 2017}
 \begin{document}
 \cbcolor{red}
+
+\newcommand{\removed}[1]{\cbstart\removedfragile{#1}\cbend{}}
+\newcommand{\removedfragile}[1]{{\color{red}{#1}}{}}
+\newcommand{\added}[1]{\cbstart\addedfragile{#1}\cbend{}}
+\newcommand{\addedfragile}[1]{{\color{green!50!black}{#1}}{}}
+\newcommand{\changed}[2]{\added{#1}\removed{#2}}
+
+
+
 \frontmatter
 \maketitle
 %

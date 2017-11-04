@@ -3,11 +3,18 @@
 \usepackage{hyperref}
 \usepackage{mathpazo}
 \usepackage{xspace}
+\usepackage{xcolor}
 \usepackage{url}
 \organization{Tau Beta Pi -- Michigan Gamma Chapter}
 \orglogo{../RotatedBentwWords}
 \adoptiondate{12 November 2013}
-\chapteramendmentdate{11 February 2014}
+\chapteramendmentdate{24 October 2017}
+
+\newcommand{\removed}[1]{\cbstart\removedfragile{#1}\cbend{}}
+\newcommand{\removedfragile}[1]{{\color{red}{#1}}{}}
+\newcommand{\added}[1]{\cbstart\addedfragile{#1}\cbend{}}
+\newcommand{\addedfragile}[1]{{\color{green!50!black}{#1}}{}}
+\newcommand{\changed}[2]{\added{#1}\removed{#2}}
 
 \begin{document}
 \cbcolor{red}
