@@ -6,9 +6,10 @@
 \usepackage{xcolor}
 \usepackage{url}
 \organization{Tau Beta Pi -- Michigan Gamma Chapter}
-\orglogo{../RotatedBentwWords}
+%\orglogo{../RotatedBentwWords}
+\orglogo{../NewBentLogo2019}
 \adoptiondate{12 November 2013}
-\chapteramendmentdate{21 March 2023}
+\chapteramendmentdate{7 November 2023}
 
 \newcommand{\removed}[1]{\cbstart\removedfragile{#1}\cbend{}}
 \newcommand{\removedfragile}[1]{{\color{red}{#1}}{}}
@@ -17,6 +18,18 @@
 \newcommand{\changed}[2]{\added{#1}\removed{#2}}
 
 \begin{document}
+
+\newenvironment{tight_enumerate}{
+  \vspace{2mm}
+\begin{compactenum}[1.]
+  \setlength{\itemindent}{+1.20em}
+  \setlength{\itemsep}{5pt}
+  \setlength{\parskip}{2pt}
+}{\end{compactenum}
+  \vspace{3mm}
+}
+
+
 \cbcolor{red}
 \frontmatter
 \maketitle
