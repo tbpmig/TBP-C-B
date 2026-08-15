@@ -20,10 +20,12 @@
 \newboolean{@approved}
 \newboolean{@printpreface}
 \newboolean{@printoptional}
+\newboolean{@officerdoc}
 
 %Class options
 \DeclareOption{bylaws}{\@constitutionfalse}
 \DeclareOption{constitution}{\@constitutiontrue}
+\DeclareOption{officerdoc}{\@officerdoctrue}
 \DeclareOption{proposal}{\@approvedfalse}
 \DeclareOption{final}{\@approvedtrue}
 \DeclareOption{10pt}{\renewcommand\@myptsize{0}} % Corresponds to 10pt font
@@ -75,11 +77,17 @@
 \newcommand{\adoptiondate}[1]{\def\@approvaldate{#1\xspace}}
 \newcommand{\chapteramendmentdate}[1]{\def\@chapteramenddate{#1\xspace}}
 \newcommand{\appendixamendmentdate}[1]{\def\@appendixamenddate{#1\xspace}}
+\newcommand{\lastreviseddate}[1]{\def\@lastreviseddate{#1\xspace}}
+\newcommand{\officerdocumenttitle}[1]{\def\@officerdoctitle{#1\xspace}}
 \newcommand{\orglogo}[1]{\def\@orglogo{
 \includegraphics[width=.5\textwidth]{#1}}}
 
 \if@approved
 	%\@ifundefined{@appendixamenddate}{\def\@appendixamenddate{BUTTER_SAUCE\xspace}}
+	\if@officerdoc
+		\def\@approval{Adopted: \@approvaldate\\
+			      	Last revised: \@lastreviseddate}
+	\else
 	\if@constitution
 		\def\@approval{Adopted: \@approvaldate
 			     \@ifundefined{@chapteramenddate}{}{
@@ -89,6 +97,7 @@
 		\def\@approval{Adopted: \@approvaldate\\
 			      	Last revised by the chapter: \@chapteramenddate\\
 			     	Appendices last revised by Officer Corps: \@appendixamenddate}
+	\fi
 	\fi
 \else
 	\RequirePackage[firstpage]{draftwatermark}
@@ -115,12 +124,17 @@
 %do this if bylaws
 \newcommand\@chaptertitle{DEFAULT}
 %do this if constitution
+\if@officerdoc
+\renewcommand\@chaptertitle{Policy}
+\def\@doctype{\@officerdoctitle Policies}
+\else
 \if@constitution
 \renewcommand\@chaptertitle{Article}
 \def\@doctype{Constitution}
 \else
 \renewcommand\@chaptertitle{Bylaw}
 \def\@doctype{Bylaws}
+\fi
 \fi
 \newcommand{\changechaptername}[1]{\renewcommand\@chaptertitle{#1}}
 
