@@ -79,6 +79,13 @@
 \newcommand{\appendixamendmentdate}[1]{\def\@appendixamenddate{#1\xspace}}
 \newcommand{\lastreviseddate}[1]{\def\@lastreviseddate{#1\xspace}}
 \newcommand{\officerdocumenttitle}[1]{\def\@officerdoctitle{#1\xspace}}
+%The date commands above are set in the preamble, so anything that checks
+%whether they were given has to wait until the preamble has been read.
+%\@officerdoctitle is needed for \@doctype on drafts as well as finals; the
+%checks for the dates sit next to the \@approval definitions that use them.
+\if@officerdoc
+\AtBeginDocument{\@ifundefined{@officerdoctitle}{\ClassError{bylaws}{Missing \string\officerdocumenttitle}{The officerdoc class option requires \string\officerdocumenttitle\space in the preamble. Its argument is the document title, e.g. \string\officerdocumenttitle{Financial}.}}{}}
+\fi
 \newcommand{\orglogo}[1]{\def\@orglogo{
 \includegraphics[width=.5\textwidth]{#1}}}
 
@@ -87,6 +94,7 @@
 	\if@officerdoc
 		\def\@approval{Adopted: \@approvaldate\\
 			      	Last revised: \@lastreviseddate}
+		\AtBeginDocument{\@ifundefined{@lastreviseddate}{\ClassError{bylaws}{Missing \string\lastreviseddate}{A final officerdoc document shows a revision date on its title page. Give \string\lastreviseddate\space in the preamble, e.g. \string\lastreviseddate{16 July 2023}.}}{}}
 	\else
 	\if@constitution
 		\def\@approval{Adopted: \@approvaldate
@@ -97,6 +105,8 @@
 		\def\@approval{Adopted: \@approvaldate\\
 			      	Last revised by the chapter: \@chapteramenddate\\
 			     	Appendices last revised by Officer Corps: \@appendixamenddate}
+		\AtBeginDocument{\@ifundefined{@chapteramenddate}{\ClassError{bylaws}{Missing \string\chapteramendmentdate}{Final bylaws show a chapter revision date on the title page. Give \string\chapteramendmentdate\space in the preamble, e.g. \string\chapteramendmentdate{18 February 2025}. Use - if the document has never been amended.}}{}%
+			\@ifundefined{@appendixamenddate}{\ClassError{bylaws}{Missing \string\appendixamendmentdate}{Final bylaws show an appendix revision date on the title page. Give \string\appendixamendmentdate\space in the preamble, e.g. \string\appendixamendmentdate{29 March 2026}. Use - if the appendices have never been amended.}}{}}
 	\fi
 	\fi
 \else
